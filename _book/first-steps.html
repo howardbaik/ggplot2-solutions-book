@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 2 First steps | Solutions to ggplot2: Elegant Graphics for Data Analysis</title>
+<meta name="author" content="Howard Baek">
+<meta name="description" content="2.1 Exercises There are none in this section.  2.2 Exercises 1. List five functions that you could use to get more information about the mpg dataset. help(mpg): Documentation of dataset dim(mpg):...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 2 First steps | Solutions to ggplot2: Elegant Graphics for Data Analysis">
+<meta property="og:type" content="book">
+<meta property="og:description" content="2.1 Exercises There are none in this section.  2.2 Exercises 1. List five functions that you could use to get more information about the mpg dataset. help(mpg): Documentation of dataset dim(mpg):...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 2 First steps | Solutions to ggplot2: Elegant Graphics for Data Analysis">
+<meta name="twitter:description" content="2.1 Exercises There are none in this section.  2.2 Exercises 1. List five functions that you could use to get more information about the mpg dataset. help(mpg): Documentation of dataset dim(mpg):...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Solutions to ggplot2: Elegant Graphics for Data Analysis</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Welcome</a></li>
+<li class="book-part">Getting started</li>
+<li><a class="" href="introduction.html"><span class="header-section-number">1</span> Introduction</a></li>
+<li><a class="active" href="first-steps.html"><span class="header-section-number">2</span> First steps</a></li>
+<li class="book-part">Layers</li>
+<li><a class="" href="individual-geoms.html"><span class="header-section-number">3</span> Individual geoms</a></li>
+<li><a class="" href="collective-geoms.html"><span class="header-section-number">4</span> Collective Geoms</a></li>
+<li><a class="" href="statistical-summaries.html"><span class="header-section-number">5</span> Statistical Summaries</a></li>
+<li><a class="" href="maps.html"><span class="header-section-number">6</span> Maps</a></li>
+<li><a class="" href="networks.html"><span class="header-section-number">7</span> Networks</a></li>
+<li><a class="" href="annotations.html"><span class="header-section-number">8</span> Annotations</a></li>
+<li><a class="" href="arranging-plots.html"><span class="header-section-number">9</span> Arranging plots</a></li>
+<li class="book-part">Scales</li>
+<li><a class="" href="position-scales-and-axes.html"><span class="header-section-number">10</span> Position scales and axes</a></li>
+<li><a class="" href="colour-scales-and-legends.html"><span class="header-section-number">11</span> Colour scales and legends</a></li>
+<li><a class="" href="other-aesthetics.html"><span class="header-section-number">12</span> Other aesthetics</a></li>
+<li class="book-part">The Grammar</li>
+<li><a class="" href="mastering-the-grammar.html"><span class="header-section-number">13</span> Mastering the grammar</a></li>
+<li><a class="" href="build-a-plot-layer-by-layer.html"><span class="header-section-number">14</span> Build a plot layer by layer</a></li>
+<li><a class="" href="scales-and-guides.html"><span class="header-section-number">15</span> Scales and guides</a></li>
+<li><a class="" href="coordinate-systems.html"><span class="header-section-number">16</span> Coordinate systems</a></li>
+<li><a class="" href="faceting.html"><span class="header-section-number">17</span> Faceting</a></li>
+<li><a class="" href="themes.html"><span class="header-section-number">18</span> Themes</a></li>
+<li class="book-part">Extending ggplot2</li>
+<li><a class="" href="programming-with-ggplot2.html"><span class="header-section-number">19</span> Programming with ggplot2</a></li>
+<li><a class="" href="ggplot2-internals.html"><span class="header-section-number">20</span> ggplot2 internals</a></li>
+<li><a class="" href="writing-ggplot2-extensions.html"><span class="header-section-number">21</span> Writing ggplot2 extensions</a></li>
+<li><a class="" href="case-study-springs.html"><span class="header-section-number">22</span> Case Study: Springs</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/howardbaek/ggplot2-book-exercises-solutions-book">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="first-steps" class="section level1" number="2">
+<h1>
+<span class="header-section-number">2</span> First steps<a class="anchor" aria-label="anchor" href="#first-steps"><i class="fas fa-link"></i></a>
+</h1>
+<div id="exercises" class="section level2" number="2.1">
+<h2>
+<span class="header-section-number">2.1</span> Exercises<a class="anchor" aria-label="anchor" href="#exercises"><i class="fas fa-link"></i></a>
+</h2>
+<p>There are none in this section.</p>
+</div>
+<div id="exercises-1" class="section level2" number="2.2">
+<h2>
+<span class="header-section-number">2.2</span> Exercises<a class="anchor" aria-label="anchor" href="#exercises-1"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>1.</strong> List five functions that you could use to get more information about the <code>mpg</code> dataset.</p>
+<ul>
+<li>
+<code>help(mpg)</code>: Documentation of dataset</li>
+<li>
+<code><a href="https://rdrr.io/r/base/dim.html">dim(mpg)</a></code>: Dimensions of dataset</li>
+<li>
+<code><a href="https://rdrr.io/r/base/summary.html">summary(mpg)</a></code>: Summary measures of dataset</li>
+<li>
+<code><a href="https://rdrr.io/r/utils/str.html">str(mpg)</a></code>: Display of the internal structure of dataset</li>
+<li>
+<code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse(mpg)</a></code>: <code>dplyr</code> version of <code><a href="https://rdrr.io/r/utils/str.html">str(mpg)</a></code>
+</li>
+</ul>
+<p><br></p>
+<p><strong>2.</strong> How can you find out what other datasets are included with ggplot2?</p>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/utils/data.html">data(package = "ggplot2")</a></code> loads the available data sets in ggplot2. Alternatively,if you have internet access, go to <a href="https://ggplot2.tidyverse.org/reference/index.html#section-data" class="uri">https://ggplot2.tidyverse.org/reference/index.html#section-data</a>
+</li>
+</ul>
+<p><br></p>
+<p><strong>3.</strong> Apart from the US, most countries use fuel consumption (fuel consumed over fixed distance) rather than fuel economy (distance travelled with fixed amount of fuel). How could you convert cty and hwy into the European standard of l/100km?</p>
+<ul>
+<li><p>According to <a href="https://www.asknumbers.com/mpg-to-L100km.aspx">asknumbers</a>, you divide 235.214583 by the mpg values in <code>cty</code> and <code>hwy</code> to convert them into the European standard of l/100km.</p></li>
+<li><p>Function to convert into European standard (Rademaker, 2016):</p></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mpgTol100km</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">milespergallon</span><span class="op">)</span><span class="op">{</span>
+  
+  <span class="va">GalloLiter</span> <span class="op">&lt;-</span> <span class="fl">3.785411784</span>
+  <span class="va">MileKilometer</span> <span class="op">&lt;-</span> <span class="fl">1.609344</span> 
+  
+  <span class="va">l100km</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">100</span><span class="op">*</span><span class="va">GalloLiter</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="va">milespergallon</span><span class="op">*</span><span class="va">MileKilometer</span><span class="op">)</span>
+  <span class="va">l100km</span>
+  
+<span class="op">}</span></code></pre></div>
+<p><br></p>
+<p><strong>4.</strong> Which manufacturer has the most models in this dataset? Which model has the most variations? Does your answer change if you remove the redundant specification of drive train (e.g. “pathfinder 4wd”, “a4 quattro”) from the model name?</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Count manufacturers and sort</span>
+<span class="va">mpg</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">manufacturer</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 15 × 2</span>
+<span class="co">#&gt;    manufacturer     n</span>
+<span class="co">#&gt;    &lt;chr&gt;        &lt;int&gt;</span>
+<span class="co">#&gt;  1 dodge           37</span>
+<span class="co">#&gt;  2 toyota          34</span>
+<span class="co">#&gt;  3 volkswagen      27</span>
+<span class="co">#&gt;  4 ford            25</span>
+<span class="co">#&gt;  5 chevrolet       19</span>
+<span class="co">#&gt;  6 audi            18</span>
+<span class="co">#&gt;  7 hyundai         14</span>
+<span class="co">#&gt;  8 subaru          14</span>
+<span class="co">#&gt;  9 nissan          13</span>
+<span class="co">#&gt; 10 honda            9</span>
+<span class="co">#&gt; 11 jeep             8</span>
+<span class="co">#&gt; 12 pontiac          5</span>
+<span class="co">#&gt; 13 land rover       4</span>
+<span class="co">#&gt; 14 mercury          4</span>
+<span class="co">#&gt; 15 lincoln          3</span></code></pre></div>
+<ul>
+<li>
+<code>dodge</code> has the most models in this dataset.</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">$</span><span class="va">model</span><span class="op">)</span>
+<span class="co">#&gt;  [1] "a4"                     "a4 quattro"            </span>
+<span class="co">#&gt;  [3] "a6 quattro"             "c1500 suburban 2wd"    </span>
+<span class="co">#&gt;  [5] "corvette"               "k1500 tahoe 4wd"       </span>
+<span class="co">#&gt;  [7] "malibu"                 "caravan 2wd"           </span>
+<span class="co">#&gt;  [9] "dakota pickup 4wd"      "durango 4wd"           </span>
+<span class="co">#&gt; [11] "ram 1500 pickup 4wd"    "expedition 2wd"        </span>
+<span class="co">#&gt; [13] "explorer 4wd"           "f150 pickup 4wd"       </span>
+<span class="co">#&gt; [15] "mustang"                "civic"                 </span>
+<span class="co">#&gt; [17] "sonata"                 "tiburon"               </span>
+<span class="co">#&gt; [19] "grand cherokee 4wd"     "range rover"           </span>
+<span class="co">#&gt; [21] "navigator 2wd"          "mountaineer 4wd"       </span>
+<span class="co">#&gt; [23] "altima"                 "maxima"                </span>
+<span class="co">#&gt; [25] "pathfinder 4wd"         "grand prix"            </span>
+<span class="co">#&gt; [27] "forester awd"           "impreza awd"           </span>
+<span class="co">#&gt; [29] "4runner 4wd"            "camry"                 </span>
+<span class="co">#&gt; [31] "camry solara"           "corolla"               </span>
+<span class="co">#&gt; [33] "land cruiser wagon 4wd" "toyota tacoma 4wd"     </span>
+<span class="co">#&gt; [35] "gti"                    "jetta"                 </span>
+<span class="co">#&gt; [37] "new beetle"             "passat"</span></code></pre></div>
+<ul>
+<li>(Rademaker, 2016) The <code>a4</code> and <code>camry</code> both have a second model (the <code>a4 quattro</code> and the <code>camry solar</code>)</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Remove redundant information (Rademaker, 2016)</span>
+<span class="fu">str_trim</span><span class="op">(</span><span class="fu">str_replace_all</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">$</span><span class="va">model</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"quattro"</span> <span class="op">=</span> <span class="st">""</span>, <span class="st">"4wd"</span> <span class="op">=</span> <span class="st">""</span>, 
+                                     <span class="st">"2wd"</span> <span class="op">=</span> <span class="st">""</span>, <span class="st">"awd"</span> <span class="op">=</span> <span class="st">""</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt;  [1] "a4"                 "a4"                </span>
+<span class="co">#&gt;  [3] "a6"                 "c1500 suburban"    </span>
+<span class="co">#&gt;  [5] "corvette"           "k1500 tahoe"       </span>
+<span class="co">#&gt;  [7] "malibu"             "caravan"           </span>
+<span class="co">#&gt;  [9] "dakota pickup"      "durango"           </span>
+<span class="co">#&gt; [11] "ram 1500 pickup"    "expedition"        </span>
+<span class="co">#&gt; [13] "explorer"           "f150 pickup"       </span>
+<span class="co">#&gt; [15] "mustang"            "civic"             </span>
+<span class="co">#&gt; [17] "sonata"             "tiburon"           </span>
+<span class="co">#&gt; [19] "grand cherokee"     "range rover"       </span>
+<span class="co">#&gt; [21] "navigator"          "mountaineer"       </span>
+<span class="co">#&gt; [23] "altima"             "maxima"            </span>
+<span class="co">#&gt; [25] "pathfinder"         "grand prix"        </span>
+<span class="co">#&gt; [27] "forester"           "impreza"           </span>
+<span class="co">#&gt; [29] "4runner"            "camry"             </span>
+<span class="co">#&gt; [31] "camry solara"       "corolla"           </span>
+<span class="co">#&gt; [33] "land cruiser wagon" "toyota tacoma"     </span>
+<span class="co">#&gt; [35] "gti"                "jetta"             </span>
+<span class="co">#&gt; [37] "new beetle"         "passat"</span></code></pre></div>
+<p><br></p>
+</div>
+<div id="exercises-2" class="section level2" number="2.3">
+<h2>
+<span class="header-section-number">2.3</span> Exercises<a class="anchor" aria-label="anchor" href="#exercises-2"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>1.</strong> How would you describe the relationship between <code>cty</code> and <code>hwy</code>? Do you have any concerns about drawing conclusions from that plot?</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mpg</span> <span class="op">%&gt;%</span> 
+  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">cty</span>, <span class="va">hwy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="02-first-steps_files/figure-html/unnamed-chunk-6-1.png" width="672"></div>
+<ul>
+<li>The plot shows a strongly linear relationship, which tells me that <code>cty</code> and <code>hwy</code> are highly correlated variables. The only concern I have is that the points seem to be overlapping.</li>
+<li>There is not much insight to be gained except that cars which are fuel efficient on a highway are also fuel efficient in cities. This relationship is probably a function of speed (Rademaker, 2016)</li>
+</ul>
+<p><br></p>
+<p><strong>2.</strong> What does <code>ggplot(mpg, aes(model, manufacturer)) + geom_point()</code> show? Is it useful? How could you modify the data to make it more informative?</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">mpg</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">model</span>, <span class="va">manufacturer</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="02-first-steps_files/figure-html/unnamed-chunk-7-1.png" width="672"></div>
+<ul>
+<li>The plot shows the manufacturer of each model. Its not very readable since there are too many models and this clutters up the x-axis with too many ticks! I would just plot 20 or so models so that the graph is more readable. See below:</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mpg</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">25</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">model</span>, <span class="va">manufacturer</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="02-first-steps_files/figure-html/unnamed-chunk-8-1.png" width="672"></div>
+<ul>
+<li>A possible alternative would be to look total number of observations for each manufacturer-model combination using geom_bar(). (Rademaker, 2016)</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">mpg</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">transmute</a></span><span class="op">(</span><span class="st">"man_mod"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">manufacturer</span>, <span class="va">model</span>, sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span><span class="op">)</span>
+
+
+<span class="fu">ggplot</span><span class="op">(</span><span class="va">df</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">man_mod</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_bar</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">coord_flip</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="02-first-steps_files/figure-html/unnamed-chunk-9-1.png" width="672"></div>
+<p><br></p>
+<p><strong>3.</strong> Describe the data, aesthetic mappings and layers used for each of the following plots. You’ll need to guess a little because you haven’t seen all the datasets and functions yet, but use your common sense! See if you can predict what the plot will look like before running the code.</p>
+<ol style="list-style-type: decimal">
+<li><code>ggplot(mpg, aes(cty, hwy)) + geom_point()</code></li>
+</ol>
+<ul>
+<li><p><em>Data</em>: <code>mpg</code></p></li>
+<li><p><em>Aesthetic</em>: highway miles per gallon is mapped to y position and city miles per gallon is mapped to x position.</p></li>
+<li><p><em>Layer</em>: points</p></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><code>ggplot(diamonds, aes(carat, price)) + geom_point()</code></li>
+</ol>
+<ul>
+<li><p><em>Data</em>: <code>diamonds</code></p></li>
+<li><p><em>Aesthetic</em>: price in US dollars is mapped to y position, weight of the diamond is mapped to x position.</p></li>
+<li><p><em>Layer</em>: points</p></li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li><code>ggplot(economics, aes(date, unemploy)) + geom_line()</code></li>
+</ol>
+<ul>
+<li><p><em>Data</em>: <code>economics</code></p></li>
+<li><p><em>Aesthetic</em>: median duration of unemployment, in weeks, is mapped to y position and month of data collection is mapped to x position.</p></li>
+<li><p><em>Layer</em>: line</p></li>
+</ul>
+<p>(Rademaker, 2016) Alternatively, you can always access plot info using summary(<plot>) as in e.g.</plot></p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># summary(&lt;plot&gt;)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu">ggplot</span><span class="op">(</span><span class="va">economics</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">date</span>, <span class="va">unemploy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; data: date, pce, pop, psavert, uempmed, unemploy</span>
+<span class="co">#&gt;   [574x6]</span>
+<span class="co">#&gt; mapping:  x = ~date, y = ~unemploy</span>
+<span class="co">#&gt; faceting: &lt;ggproto object: Class FacetNull, Facet, gg&gt;</span>
+<span class="co">#&gt;     compute_layout: function</span>
+<span class="co">#&gt;     draw_back: function</span>
+<span class="co">#&gt;     draw_front: function</span>
+<span class="co">#&gt;     draw_labels: function</span>
+<span class="co">#&gt;     draw_panels: function</span>
+<span class="co">#&gt;     finish_data: function</span>
+<span class="co">#&gt;     init_scales: function</span>
+<span class="co">#&gt;     map_data: function</span>
+<span class="co">#&gt;     params: list</span>
+<span class="co">#&gt;     setup_data: function</span>
+<span class="co">#&gt;     setup_params: function</span>
+<span class="co">#&gt;     shrink: TRUE</span>
+<span class="co">#&gt;     train_scales: function</span>
+<span class="co">#&gt;     vars: function</span>
+<span class="co">#&gt;     super:  &lt;ggproto object: Class FacetNull, Facet, gg&gt;</span>
+<span class="co">#&gt; -----------------------------------</span>
+<span class="co">#&gt; geom_line: na.rm = FALSE, orientation = NA</span>
+<span class="co">#&gt; stat_identity: na.rm = FALSE</span>
+<span class="co">#&gt; position_identity</span></code></pre></div>
+<p><br></p>
+</div>
+<div id="exercises-3" class="section level2" number="2.4">
+<h2>
+<span class="header-section-number">2.4</span> Exercises<a class="anchor" aria-label="anchor" href="#exercises-3"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>1.</strong> Experiment with the colour, shape and size aesthetics. What happens when you map them to continuous values? What about categorical values? What happens when you use more than one aesthetic in a plot?</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Map color to continuous value</span>
+<span class="va">mpg</span> <span class="op">%&gt;%</span> 
+  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">cty</span>, <span class="va">hwy</span>, color <span class="op">=</span> <span class="va">displ</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="02-first-steps_files/figure-html/unnamed-chunk-11-1.png" width="672"></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Map color to categorical value</span>
+<span class="va">mpg</span> <span class="op">%&gt;%</span> 
+  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">cty</span>, <span class="va">hwy</span>, color <span class="op">=</span> <span class="va">trans</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="02-first-steps_files/figure-html/unnamed-chunk-11-2.png" width="672"></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Use more than one aesthetic in a plot</span>
+<span class="va">mpg</span> <span class="op">%&gt;%</span> 
+  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">cty</span>, <span class="va">hwy</span>, color <span class="op">=</span> <span class="va">trans</span>, size <span class="op">=</span> <span class="va">trans</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; Warning: Using size for a discrete variable is not advised.</span></code></pre></div>
+<div class="inline-figure"><img src="02-first-steps_files/figure-html/unnamed-chunk-11-3.png" width="672"></div>
+<p><br></p>
+<p><strong>2.</strong> What happens if you map a continuous variable to shape? Why? What happens if you map trans to shape? Why?</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mpg</span> <span class="op">%&gt;%</span> 
+  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">cty</span>, <span class="va">hwy</span>, shape <span class="op">=</span> <span class="va">displ</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<ul>
+<li>I can not map a continuous variable to shape and I get an error message: <code>Error: A continuous variable can not be mapped to shape</code>
+</li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mpg</span> <span class="op">%&gt;%</span> 
+  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">cty</span>, <span class="va">hwy</span>, shape <span class="op">=</span> <span class="va">trans</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; Warning: The shape palette can deal with a maximum of 6</span>
+<span class="co">#&gt; discrete values because more than 6 becomes difficult</span>
+<span class="co">#&gt; to discriminate; you have 10. Consider specifying</span>
+<span class="co">#&gt; shapes manually if you must have them.</span>
+<span class="co">#&gt; Warning: Removed 96 rows containing missing values</span>
+<span class="co">#&gt; (geom_point).</span></code></pre></div>
+<div class="inline-figure"><img src="02-first-steps_files/figure-html/unnamed-chunk-13-1.png" width="672"></div>
+<ul>
+<li>I get an warning message that tells me the shape palette can only deal with 6 discrete values.</li>
+</ul>
+<p><br></p>
+<p><strong>3.</strong> How is drive train related to fuel economy? How is drive train related to engine size and class?</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mpg</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">drv</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_cty <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">cty</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">drv</span>, <span class="va">mean_cty</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_col</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="02-first-steps_files/figure-html/unnamed-chunk-14-1.png" width="672"></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">mpg</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">drv</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_hwy <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">hwy</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">drv</span>, <span class="va">mean_hwy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_col</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="02-first-steps_files/figure-html/unnamed-chunk-14-2.png" width="672"></div>
+<ul>
+<li>Front-wheel drive has the best fuel economy, then 4wd, then rear wheel drive.</li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mpg</span> <span class="op">%&gt;%</span> 
+  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">drv</span>, <span class="va">displ</span>, fill <span class="op">=</span> <span class="va">class</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_col</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"dodge"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="02-first-steps_files/figure-html/unnamed-chunk-15-1.png" width="672"></div>
+<ul>
+<li>4wd has biggest engine size, then front-wheel, then rear wheel drive. Out of all 4wd, suvs have biggest engine size. Out of all front-wheel drive, midsize has biggest engine size. Out of all rear wheel drive, 2 seater has biggest engine size.</li>
+</ul>
+<p><br></p>
+</div>
+<div id="exercises-4" class="section level2" number="2.5">
+<h2>
+<span class="header-section-number">2.5</span> Exercises<a class="anchor" aria-label="anchor" href="#exercises-4"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>1.</strong> What happens if you try to facet by a continuous variable like hwy? What about cyl? What’s the key difference?</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mpg</span> <span class="op">%&gt;%</span> 
+  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">drv</span>, <span class="va">displ</span>, fill <span class="op">=</span> <span class="va">class</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_col</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"dodge"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">hwy</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="02-first-steps_files/figure-html/unnamed-chunk-16-1.png" width="672"></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mpg</span> <span class="op">%&gt;%</span> 
+  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">drv</span>, <span class="va">displ</span>, fill <span class="op">=</span> <span class="va">class</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_col</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"dodge"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">cyl</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="02-first-steps_files/figure-html/unnamed-chunk-16-2.png" width="672"></div>
+<ul>
+<li>The key difference is <code>hwy</code> is a continuous variable that has 27 unique values, so you get 27 different subsets. However, <code>cly</code> is a categorical variable and has 4 unique values, so <code>cyl</code> only has 4 different subsets. It is less cluttered when you try to facet.</li>
+<li>(Rademaker, 2016) Facetting by a continous variable works but becomes hard to read and interpret when the variable that we facet by has to many levels.</li>
+</ul>
+<p><br></p>
+<p><strong>2.</strong> Use faceting to explore the 3-way relationship between fuel economy, engine size, and number of cylinders. How does faceting by number of cylinders change your assessement of the relationship between engine size and fuel economy?</p>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mpg</span> <span class="op">%&gt;%</span> 
+  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">displ</span>, <span class="va">cty</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="02-first-steps_files/figure-html/unnamed-chunk-17-1.png" width="672"></div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mpg</span> <span class="op">%&gt;%</span> 
+  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">displ</span>, <span class="va">cty</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">cyl</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="02-first-steps_files/figure-html/unnamed-chunk-17-2.png" width="672"></div>
+<ul>
+<li>When I initially plot engine size and fuel economy, I see an overall decreasing linear relationship. Upon faceting, I see that the decreasing relationship is mostly seen in the 4 cylinder subset. In the other cylinder subsets, we see a flat relationship - as engine displacement increases, fuel economy remains constant.</li>
+</ul>
+<p><br></p>
+<p><strong>3.</strong> Read the documentation for <code>facet_wrap()</code>. What arguments can you use to control how many rows and columns appear in the output?</p>
+<ul>
+<li>I can use the arguments <code>nrow, ncol</code> to control how many rows and columns appear in the output.</li>
+</ul>
+<p><br></p>
+<p><strong>4.</strong> What does the <code>scales</code> argument to <code>facet_wrap()</code> do? When might you use it?</p>
+<ul>
+<li>It allows users to decide whether scales should be fixed. I would use it whenever different subsets of the data are on vastly different scales.</li>
+<li>(Rademaker, 2016) If we want to compare across facets, <code>scales = "fixed"</code> is more appropriate. If our focus is on individual patterns within each facet, setting <code>scales = "free"</code> might be more approriate.</li>
+</ul>
+<p><br></p>
+</div>
+<div id="exercises-5" class="section level2" number="2.6">
+<h2>
+<span class="header-section-number">2.6</span> Exercises<a class="anchor" aria-label="anchor" href="#exercises-5"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>1.</strong> What’s the problem with the plot created by <code>ggplot(mpg, aes(cty, hwy)) + geom_point()</code>? Which of the geoms described above is most effective at remedying the problem?</p>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">mpg</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">cty</span>, <span class="va">hwy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="02-first-steps_files/figure-html/unnamed-chunk-18-1.png" width="672"></div>
+<ul>
+<li>The problem is overplotting.</li>
+</ul>
+<p>Solution 1. Use <code>geom_jitter</code> to add random noise to the data and avoid overplotting.</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">mpg</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">cty</span>, <span class="va">hwy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">geom_jitter</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="02-first-steps_files/figure-html/unnamed-chunk-19-1.png" width="672"></div>
+<p>Solution 2. (Rademaker, 2016) Set opacity with <code>alpha</code></p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">mpg</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">cty</span>, <span class="va">hwy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_point</span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="02-first-steps_files/figure-html/unnamed-chunk-20-1.png" width="672"></div>
+<p><br></p>
+<p><strong>2.</strong> One challenge with <code>ggplot(mpg, aes(class, hwy)) + geom_boxplot()</code> is that the ordering of <code>class</code> is alphabetical, which is not terribly useful. How could you change the factor levels to be more informative?</p>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mpg</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>class <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">class</span><span class="op">)</span>,
+         class <span class="op">=</span> <span class="fu">fct_reorder</span><span class="op">(</span><span class="va">class</span>, <span class="va">hwy</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">class</span>, <span class="va">hwy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="02-first-steps_files/figure-html/unnamed-chunk-21-1.png" width="672"></div>
+<ul>
+<li>We could convert <code>class</code> to a factor and reorder it by <code>hwy</code>
+</li>
+</ul>
+<p><br></p>
+<p><strong>3.</strong> Explore the distribution of the carat variable in the <code>diamonds</code> dataset. What binwidth reveals the most interesting patterns?</p>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">diamonds</span> <span class="op">%&gt;%</span> 
+  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">carat</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_histogram</span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="02-first-steps_files/figure-html/unnamed-chunk-22-1.png" width="672"></div>
+<ul>
+<li>This is a subjective answer, but binwidth of 0.2 or 0.3 reveals that the distribution of <code>carat</code> is heavily skewed to the right. This means that most diamonds carats are between 0 and 1.</li>
+</ul>
+<p><br></p>
+<p><strong>4.</strong> Explore the distribution of the price variable in the <code>diamonds</code> data. How does the distribution vary by cut?</p>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">diamonds</span> <span class="op">%&gt;%</span> 
+  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">price</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_histogram</span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with</span>
+<span class="co">#&gt; `binwidth`.</span></code></pre></div>
+<div class="inline-figure"><img src="02-first-steps_files/figure-html/unnamed-chunk-23-1.png" width="672"></div>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">diamonds</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>cut <span class="op">=</span> <span class="fu">fct_reorder</span><span class="op">(</span><span class="va">cut</span>, <span class="va">price</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">cut</span>, <span class="va">price</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="02-first-steps_files/figure-html/unnamed-chunk-23-2.png" width="672"></div>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="fu">ggplot</span><span class="op">(</span><span class="va">diamonds</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">price</span>, y <span class="op">=</span><span class="va">..density..</span>, color <span class="op">=</span> <span class="va">cut</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_freqpoly</span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">200</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="02-first-steps_files/figure-html/unnamed-chunk-23-3.png" width="672"></div>
+<ul>
+<li>(Rademaker, 2016) Fair quality diamonds are more expensive then others. Possible reason is they are bigger.</li>
+</ul>
+<p><br></p>
+<p><strong>5.</strong> You now know (at least) three ways to compare the distributions of subgroups: <code>geom_violin()</code>, <code>geom_freqpoly()</code> and the colour aesthetic, or <code>geom_histogram()</code> and faceting. What are the strengths and weaknesses of each approach? What other approaches could you try?</p>
+<ul>
+<li><p>According to the book, <code>geom_violin()</code> shows a compact representation of the “density” of the distribution, highlighting the areas where more points are found. Its weakness is that violin plos rely on the calculation of a density estimate, which is hard to interpret.</p></li>
+<li><p>According to the book, <code>geom_freqploy()</code> bins the data, then counts the number of observations in each bin using lines. One possible weakness is that you have to select the width of the bins yourself by experimentation.</p></li>
+<li><p>According to the book, <code>geom_histogram()</code> and faceting makes it easier to see the distribution of each group, but makes comparisons between groups a little harder.</p></li>
+</ul>
+<p><br></p>
+<p><strong>6.</strong> Read the documentation for <code>geom_bar()</code>. What does the <code>weight</code> aesthetic do?</p>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">?</span><span class="fu">geom_bar</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<ul>
+<li>The <code>weight</code> aesthetic converts the number of cases to a weight and makes the height of the bar proportional to the sum of the weights. See below:</li>
+</ul>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">mpg</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">class</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># Number of cars in each class:</span>
+<span class="va">g</span> <span class="op">+</span> <span class="fu">geom_bar</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="02-first-steps_files/figure-html/unnamed-chunk-25-1.png" width="672"></div>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Total engine displacement of each class</span>
+<span class="va">g</span> <span class="op">+</span> <span class="fu">geom_bar</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>weight <span class="op">=</span> <span class="va">displ</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="02-first-steps_files/figure-html/unnamed-chunk-25-2.png" width="672"></div>
+<p><br></p>
+<p><strong>7.</strong> Using the techniques already discussed in this chapter, come up with three ways to visualize a 2d categorical distribution. Try them out by visualising the distribution of <code>model</code> and <code>manufacturer</code>, <code>trans</code> and <code>class</code>, and <code>cyl</code> and <code>trans</code>.</p>
+<ul>
+<li>Not sure</li>
+</ul>
+</div>
+</div>
+
+
+
+  <div class="chapter-nav">
+<div class="prev"><a href="introduction.html"><span class="header-section-number">1</span> Introduction</a></div>
+<div class="next"><a href="individual-geoms.html"><span class="header-section-number">3</span> Individual geoms</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#first-steps"><span class="header-section-number">2</span> First steps</a></li>
+<li><a class="nav-link" href="#exercises"><span class="header-section-number">2.1</span> Exercises</a></li>
+<li><a class="nav-link" href="#exercises-1"><span class="header-section-number">2.2</span> Exercises</a></li>
+<li><a class="nav-link" href="#exercises-2"><span class="header-section-number">2.3</span> Exercises</a></li>
+<li><a class="nav-link" href="#exercises-3"><span class="header-section-number">2.4</span> Exercises</a></li>
+<li><a class="nav-link" href="#exercises-4"><span class="header-section-number">2.5</span> Exercises</a></li>
+<li><a class="nav-link" href="#exercises-5"><span class="header-section-number">2.6</span> Exercises</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/howardbaek/ggplot2-book-exercises-solutions-book/blob/main/02-first-steps.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/howardbaek/ggplot2-book-exercises-solutions-book/edit/main/02-first-steps.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Solutions to ggplot2: Elegant Graphics for Data Analysis</strong>" was written by Howard Baek. It was last built on 2021-12-26.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

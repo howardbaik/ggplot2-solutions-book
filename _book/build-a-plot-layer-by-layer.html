@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 14 Build a plot layer by layer | Solutions to ggplot2: Elegant Graphics for Data Analysis</title>
+<meta name="author" content="Howard Baek">
+<meta name="description" content="14.1 Exercises 1. The first two arguments to ggplot are data and mapping. The first two arguments to all layer functions are mapping and data. Why does the order of the arguments differ? (Hint:...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 14 Build a plot layer by layer | Solutions to ggplot2: Elegant Graphics for Data Analysis">
+<meta property="og:type" content="book">
+<meta property="og:description" content="14.1 Exercises 1. The first two arguments to ggplot are data and mapping. The first two arguments to all layer functions are mapping and data. Why does the order of the arguments differ? (Hint:...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 14 Build a plot layer by layer | Solutions to ggplot2: Elegant Graphics for Data Analysis">
+<meta name="twitter:description" content="14.1 Exercises 1. The first two arguments to ggplot are data and mapping. The first two arguments to all layer functions are mapping and data. Why does the order of the arguments differ? (Hint:...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Solutions to ggplot2: Elegant Graphics for Data Analysis</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Welcome</a></li>
+<li class="book-part">Getting started</li>
+<li><a class="" href="introduction.html"><span class="header-section-number">1</span> Introduction</a></li>
+<li><a class="" href="first-steps.html"><span class="header-section-number">2</span> First steps</a></li>
+<li class="book-part">Layers</li>
+<li><a class="" href="individual-geoms.html"><span class="header-section-number">3</span> Individual geoms</a></li>
+<li><a class="" href="collective-geoms.html"><span class="header-section-number">4</span> Collective Geoms</a></li>
+<li><a class="" href="statistical-summaries.html"><span class="header-section-number">5</span> Statistical Summaries</a></li>
+<li><a class="" href="maps.html"><span class="header-section-number">6</span> Maps</a></li>
+<li><a class="" href="networks.html"><span class="header-section-number">7</span> Networks</a></li>
+<li><a class="" href="annotations.html"><span class="header-section-number">8</span> Annotations</a></li>
+<li><a class="" href="arranging-plots.html"><span class="header-section-number">9</span> Arranging plots</a></li>
+<li class="book-part">Scales</li>
+<li><a class="" href="position-scales-and-axes.html"><span class="header-section-number">10</span> Position scales and axes</a></li>
+<li><a class="" href="colour-scales-and-legends.html"><span class="header-section-number">11</span> Colour scales and legends</a></li>
+<li><a class="" href="other-aesthetics.html"><span class="header-section-number">12</span> Other aesthetics</a></li>
+<li class="book-part">The Grammar</li>
+<li><a class="" href="mastering-the-grammar.html"><span class="header-section-number">13</span> Mastering the grammar</a></li>
+<li><a class="active" href="build-a-plot-layer-by-layer.html"><span class="header-section-number">14</span> Build a plot layer by layer</a></li>
+<li><a class="" href="scales-and-guides.html"><span class="header-section-number">15</span> Scales and guides</a></li>
+<li><a class="" href="coordinate-systems.html"><span class="header-section-number">16</span> Coordinate systems</a></li>
+<li><a class="" href="faceting.html"><span class="header-section-number">17</span> Faceting</a></li>
+<li><a class="" href="themes.html"><span class="header-section-number">18</span> Themes</a></li>
+<li class="book-part">Extending ggplot2</li>
+<li><a class="" href="programming-with-ggplot2.html"><span class="header-section-number">19</span> Programming with ggplot2</a></li>
+<li><a class="" href="ggplot2-internals.html"><span class="header-section-number">20</span> ggplot2 internals</a></li>
+<li><a class="" href="writing-ggplot2-extensions.html"><span class="header-section-number">21</span> Writing ggplot2 extensions</a></li>
+<li><a class="" href="case-study-springs.html"><span class="header-section-number">22</span> Case Study: Springs</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/howardbaek/ggplot2-book-exercises-solutions-book">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="build-a-plot-layer-by-layer" class="section level1" number="14">
+<h1>
+<span class="header-section-number">14</span> Build a plot layer by layer<a class="anchor" aria-label="anchor" href="#build-a-plot-layer-by-layer"><i class="fas fa-link"></i></a>
+</h1>
+<div id="exercises-12" class="section level2" number="14.1">
+<h2>
+<span class="header-section-number">14.1</span> Exercises<a class="anchor" aria-label="anchor" href="#exercises-12"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>1.</strong> The first two arguments to ggplot are <code>data</code> and <code>mapping</code>. The first
+two arguments to all layer functions are <code>mapping</code> and <code>data</code>. Why does the
+order of the arguments differ? (Hint: think about what you set most commonly.)</p>
+<ul>
+<li>Commonly, you first set the data in <code>ggplot()</code> and then set aesthetics inside your layer functions, like <code>geom_point()</code>, <code>geom_boxplot()</code>, or <code>geom_histogram()</code>.</li>
+</ul>
+<p><br></p>
+<p><strong>2.</strong></p>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+<span class="va">class</span> <span class="op">&lt;-</span> <span class="va">mpg</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">class</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>, hwy <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">hwy</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mpg</span> <span class="op">%&gt;%</span> 
+  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">class</span>, <span class="va">hwy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_jitter</span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.15</span>, height <span class="op">=</span> <span class="fl">0.35</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_point</span><span class="op">(</span>data <span class="op">=</span> <span class="va">class</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">class</span>, <span class="va">hwy</span><span class="op">)</span>, 
+             color <span class="op">=</span> <span class="st">"red"</span>,
+             size <span class="op">=</span> <span class="fl">6</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_text</span><span class="op">(</span>data <span class="op">=</span> <span class="va">class</span>, <span class="fu">aes</span><span class="op">(</span>y <span class="op">=</span> <span class="fl">10</span>, x <span class="op">=</span> <span class="va">class</span>, label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"n = "</span>, <span class="va">n</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="14-build-plot_files/figure-html/unnamed-chunk-3-1.png" width="672"></div>
+<ul>
+<li>I plotted 3 different layers: jittered points, red point for the summary measure, mean, and text for the sample size (n).</li>
+</ul>
+<p><br></p>
+</div>
+<div id="exercises-13" class="section level2" number="14.2">
+<h2>
+<span class="header-section-number">14.2</span> Exercises<a class="anchor" aria-label="anchor" href="#exercises-13"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>1.</strong> Simplify the following plot specifications:</p>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">####################################</span>
+<span class="co">####################################</span>
+<span class="co"># ggplot(mpg) + </span>
+<span class="co">#   geom_point(aes(mpg$displ, mpg$hwy))</span>
+
+<span class="co"># The above can be simplified:</span>
+<span class="co"># ggplot(mpg) +</span>
+<span class="co">#   geom_point(aes(displ, hwy))</span>
+<span class="co">####################################</span>
+<span class="co">####################################</span>
+
+
+<span class="co">####################################</span>
+<span class="co">####################################</span>
+<span class="co"># ggplot() + </span>
+<span class="co">#  geom_point(mapping = aes(y = hwy, x = cty),</span>
+<span class="co">#             data = mpg) +</span>
+<span class="co">#  geom_smooth(data = mpg, </span>
+<span class="co">#              mapping = aes(cty, hwy))</span>
+
+<span class="co"># The above can be simplified:</span>
+<span class="co"># ggplot(mpg, aes(cty, hwy)) +</span>
+<span class="co">#  geom_point() +</span>
+<span class="co">#  geom_smooth()</span>
+<span class="co">####################################</span>
+<span class="co">####################################</span>
+
+
+<span class="co">####################################</span>
+<span class="co">####################################</span>
+<span class="co"># ggplot(diamonds, aes(carat, price)) + </span>
+<span class="co">#   geom_point(aes(log(brainwt), log(bodywt)), </span>
+<span class="co">#              data = msleep)</span>
+
+<span class="co"># The above can be simplified:</span>
+<span class="co"># msleep_processed &lt;- msleep %&gt;% </span>
+<span class="co">#   mutate(brainwt_log = log(brainwt),</span>
+<span class="co">#          bodywt_log = log(bodywt))</span>
+
+<span class="co"># ggplot(diamonds, aes(carat, price)) +</span>
+<span class="co">#   geom_point(aes(brainwt_log, bodywt_log), </span>
+<span class="co">#              data = msleep_processed)</span>
+<span class="co">####################################</span>
+<span class="co">####################################</span></code></pre></div>
+<p><br></p>
+<p><strong>2.</strong> What does the following code do? Does it work? Does it make sense? Why/why not?</p>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">class</span>, <span class="va">cty</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">geom_boxplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">trans</span>, <span class="va">hwy</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="14-build-plot_files/figure-html/unnamed-chunk-5-1.png" width="672"></div>
+<ul>
+<li>It plots points of <code>class</code> vs <code>cty</code> and then a boxplot of <code>trans</code> vs <code>hwy</code>. It doesn’t make sense to plot layers with different <code>x</code> and <code>y</code> variables.</li>
+</ul>
+<p><br></p>
+<p><strong>3.</strong> What happens if you try to use a continuous variable on the x axis in one layer, and a categorical variable in another layer? What happens if you do it in the opposite order?</p>
+<ul>
+<li>Not sure</li>
+</ul>
+<p><br></p>
+</div>
+<div id="exercises-14" class="section level2" number="14.3">
+<h2>
+<span class="header-section-number">14.3</span> Exercises<a class="anchor" aria-label="anchor" href="#exercises-14"><i class="fas fa-link"></i></a>
+</h2>
+<p>1,2,3 omitted.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Starting from top left, clockwise direction:</li>
+</ol>
+<ul>
+<li>
+<code>geom_violin()</code>, <code>geom_point()</code>, <code>geom_point()</code>, <code>geom_path()</code>, <code>geom_area()</code>, <code>geom_hex()</code>.</li>
+</ul>
+</div>
+<div id="exercises-15" class="section level2" number="14.4">
+<h2>
+<span class="header-section-number">14.4</span> Exercises<a class="anchor" aria-label="anchor" href="#exercises-15"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>1.</strong></p>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/loess.html">loess</a></span><span class="op">(</span><span class="va">hwy</span> <span class="op">~</span> <span class="va">displ</span>, data <span class="op">=</span> <span class="va">mpg</span><span class="op">)</span>
+<span class="va">smoothed</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>displ <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1.6</span>, <span class="fl">7</span>, length <span class="op">=</span> <span class="fl">50</span><span class="op">)</span><span class="op">)</span>
+<span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="va">smoothed</span>, se <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> 
+<span class="va">smoothed</span><span class="op">$</span><span class="va">hwy</span> <span class="op">&lt;-</span> <span class="va">pred</span><span class="op">$</span><span class="va">fit</span>
+<span class="va">smoothed</span><span class="op">$</span><span class="va">hwy_lwr</span> <span class="op">&lt;-</span> <span class="va">pred</span><span class="op">$</span><span class="va">fit</span> <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> <span class="va">pred</span><span class="op">$</span><span class="va">se.fit</span>
+<span class="va">smoothed</span><span class="op">$</span><span class="va">hwy_upr</span> <span class="op">&lt;-</span> <span class="va">pred</span><span class="op">$</span><span class="va">fit</span> <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> <span class="va">pred</span><span class="op">$</span><span class="va">se.fit</span>
+
+<span class="va">smoothed</span> <span class="op">%&gt;%</span> 
+  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">displ</span>, <span class="va">hwy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_line</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"dodgerblue1"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_ribbon</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>ymin <span class="op">=</span> <span class="va">hwy_lwr</span>,
+                  ymax <span class="op">=</span> <span class="va">hwy_upr</span><span class="op">)</span>,
+              alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="14-build-plot_files/figure-html/unnamed-chunk-6-1.png" width="672"></div>
+<p><br></p>
+<p><strong>2.</strong> From left to right,</p>
+<p><code>stat_ecdf()</code>, <code>stat_qq()</code>, <code>stat_function()</code></p>
+<p><br></p>
+<p><strong>3.</strong></p>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mpg</span> <span class="op">%&gt;%</span> 
+  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">drv</span>, <span class="va">trans</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_count</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>size <span class="op">=</span> <span class="fu">after_stat</span><span class="op">(</span><span class="va">prop</span><span class="op">)</span>, group <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> </code></pre></div>
+<div class="inline-figure"><img src="14-build-plot_files/figure-html/unnamed-chunk-7-1.png" width="672"></div>
+<p><br></p>
+</div>
+<div id="exercises-16" class="section level2" number="14.5">
+<h2>
+<span class="header-section-number">14.5</span> Exercises<a class="anchor" aria-label="anchor" href="#exercises-16"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>1.</strong> According to the help page, <code>position_nudge()</code> is generally useful for adjusting the position of items on discrete scales by a small amount. Nudging is built in to geom_text() because it’s so useful for moving labels a small distance from what they’re labelling.</p>
+<p><br></p>
+<p><strong>2.</strong> Not sure</p>
+<p><br></p>
+<p><strong>3.</strong> <code>geom_jitter()</code> adds a small amount of random variation to the location of each point. It is useful for looking at all the overplotted points. On the other hand, <code>geom_count()</code> counts the number of overlapping observations at each location. It is useful for understanding the number of points in a location.</p>
+<p><strong>4.</strong> Stacked area plot seems useful when you want to portray an area whereas a line plot seems useful when you just need a line.</p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="mastering-the-grammar.html"><span class="header-section-number">13</span> Mastering the grammar</a></div>
+<div class="next"><a href="scales-and-guides.html"><span class="header-section-number">15</span> Scales and guides</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#build-a-plot-layer-by-layer"><span class="header-section-number">14</span> Build a plot layer by layer</a></li>
+<li><a class="nav-link" href="#exercises-12"><span class="header-section-number">14.1</span> Exercises</a></li>
+<li><a class="nav-link" href="#exercises-13"><span class="header-section-number">14.2</span> Exercises</a></li>
+<li><a class="nav-link" href="#exercises-14"><span class="header-section-number">14.3</span> Exercises</a></li>
+<li><a class="nav-link" href="#exercises-15"><span class="header-section-number">14.4</span> Exercises</a></li>
+<li><a class="nav-link" href="#exercises-16"><span class="header-section-number">14.5</span> Exercises</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/howardbaek/ggplot2-book-exercises-solutions-book/blob/main/14-build-plot.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/howardbaek/ggplot2-book-exercises-solutions-book/edit/main/14-build-plot.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Solutions to ggplot2: Elegant Graphics for Data Analysis</strong>" was written by Howard Baek. It was last built on 2021-12-26.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>
