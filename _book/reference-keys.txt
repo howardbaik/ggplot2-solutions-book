@@ -47,4 +47,3 @@ exercises-23
 ggplot2-internals
 writing-ggplot2-extensions
 case-study-springs
-url-your-book-url-like-httpsbookdown.orgyihuibookdown

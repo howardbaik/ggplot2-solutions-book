@@ -70,7 +70,7 @@
 </ul>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/howardbaek/ggplot2-book-exercises-solutions-book">View book source <i class="fab fa-github"></i></a></p>
+          <p><a id="book-repo" href="https://github.com/howardbaek/ggplot2-solutions-book">View book source <i class="fab fa-github"></i></a></p>
         </div>
       </nav>
 </div>
@@ -99,7 +99,7 @@
 <li>
 <code><a href="https://rdrr.io/r/utils/str.html">str(mpg)</a></code>: Display of the internal structure of dataset</li>
 <li>
-<code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse(mpg)</a></code>: <code>dplyr</code> version of <code><a href="https://rdrr.io/r/utils/str.html">str(mpg)</a></code>
+<code>glimpse(mpg)</code>: <code>dplyr</code> version of <code><a href="https://rdrr.io/r/utils/str.html">str(mpg)</a></code>
 </li>
 </ul>
 <p><br></p>
@@ -129,7 +129,7 @@
 <p><strong>4.</strong> Which manufacturer has the most models in this dataset? Which model has the most variations? Does your answer change if you remove the redundant specification of drive train (e.g. “pathfinder 4wd”, “a4 quattro”) from the model name?</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Count manufacturers and sort</span>
-<span class="va">mpg</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">manufacturer</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">mpg</span> <span class="op">%&gt;%</span> <span class="fu">count</span><span class="op">(</span><span class="va">manufacturer</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 15 × 2</span>
 <span class="co">#&gt;    manufacturer     n</span>
 <span class="co">#&gt;    &lt;chr&gt;        &lt;int&gt;</span>
@@ -235,7 +235,7 @@
 </ul>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">mpg</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">transmute</a></span><span class="op">(</span><span class="st">"man_mod"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">manufacturer</span>, <span class="va">model</span>, sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span><span class="op">)</span>
+  <span class="fu">transmute</span><span class="op">(</span><span class="st">"man_mod"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">manufacturer</span>, <span class="va">model</span>, sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span><span class="op">)</span>
 
 
 <span class="fu">ggplot</span><span class="op">(</span><span class="va">df</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">man_mod</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -349,16 +349,16 @@
 <p><strong>3.</strong> How is drive train related to fuel economy? How is drive train related to engine size and class?</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mpg</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">drv</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_cty <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">cty</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">drv</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">summarise</span><span class="op">(</span>mean_cty <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">cty</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">drv</span>, <span class="va">mean_cty</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_col</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="02-first-steps_files/figure-html/unnamed-chunk-14-1.png" width="672"></div>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="va">mpg</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">drv</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_hwy <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">hwy</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">drv</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">summarise</span><span class="op">(</span>mean_hwy <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">hwy</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">drv</span>, <span class="va">mean_hwy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_col</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="02-first-steps_files/figure-html/unnamed-chunk-14-2.png" width="672"></div>
@@ -451,7 +451,7 @@
 <p><strong>2.</strong> One challenge with <code>ggplot(mpg, aes(class, hwy)) + geom_boxplot()</code> is that the ordering of <code>class</code> is alphabetical, which is not terribly useful. How could you change the factor levels to be more informative?</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mpg</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>class <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">class</span><span class="op">)</span>,
+  <span class="fu">mutate</span><span class="op">(</span>class <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">class</span><span class="op">)</span>,
          class <span class="op">=</span> <span class="fu">fct_reorder</span><span class="op">(</span><span class="va">class</span>, <span class="va">hwy</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">class</span>, <span class="va">hwy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span></code></pre></div>
@@ -482,7 +482,7 @@
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="va">diamonds</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>cut <span class="op">=</span> <span class="fu">fct_reorder</span><span class="op">(</span><span class="va">cut</span>, <span class="va">price</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">mutate</span><span class="op">(</span>cut <span class="op">=</span> <span class="fu">fct_reorder</span><span class="op">(</span><span class="va">cut</span>, <span class="va">price</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">cut</span>, <span class="va">price</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="02-first-steps_files/figure-html/unnamed-chunk-23-2.png" width="672"></div>
@@ -545,8 +545,8 @@
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/howardbaek/ggplot2-book-exercises-solutions-book/blob/main/02-first-steps.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/howardbaek/ggplot2-book-exercises-solutions-book/edit/main/02-first-steps.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/howardbaek/ggplot2-solutions-book/blob/main/02-first-steps.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/howardbaek/ggplot2-solutions-book/edit/main/02-first-steps.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>

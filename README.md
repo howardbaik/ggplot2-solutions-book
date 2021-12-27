@@ -1,13 +1,6 @@
-Welcome! 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8c428120-f6de-44e0-8b93-5360022ea528/deploy-status)](https://app.netlify.com/sites/ggplot2-book-solutions-3ed/deploys)
 
-This is a minimal example of a book based on R Markdown and **bookdown** (https://github.com/rstudio/bookdown). 
 
-This template provides a skeleton file structure that you can edit to create your book. 
+This is the repo for the Solutions to ggplot2: Elegant Graphics for Data Analysis
 
-The contents inside the .Rmd files provide some pointers to help you get started, but feel free to also delete the content in each file and start fresh.
-
-Additional resources:
-
-The **bookdown** book: https://bookdown.org/yihui/bookdown/
-
-The **bookdown** package reference site: https://pkgs.rstudio.com/bookdown
+Built with [bookdown](https://bookdown.org/yihui/bookdown/)

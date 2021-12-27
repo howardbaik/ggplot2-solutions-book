@@ -3,7 +3,7 @@ bookdown::bs4_book:
   theme:
     primary: "#274E82"
   repo:
-    base: https://github.com/howardbaek/ggplot2-book-exercises-solutions-book
+    base: https://github.com/howardbaek/ggplot2-solutions-book
     branch: main
 bookdown::pdf_book:
   includes:
